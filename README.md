@@ -73,4 +73,4 @@ Your feedback is welcome at Feven Weldu <feven.m.weldu@gmail.com>
 Contributions are also encouraged. Fork the GitHub repository to your own space, make your changes and send a pull request.
 
 ## Link to the License
-+ 
++ https://github.com/fevenMwoldu/passwordLocker/blob/master/LICENSE
