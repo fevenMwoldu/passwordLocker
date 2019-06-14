@@ -20,7 +20,6 @@ class TestUser(unittest.TestCase):
         '''
 
         self.assertEqual(self.new_user.first_name,"feven")
-        self.assertEqual(self.new_user.last_name,"mogos")
         self.assertEqual(self.new_user.password,"fev@gmail.com")
 
     def test_save_user(self):
@@ -40,6 +39,17 @@ class TestUser(unittest.TestCase):
         test_user=User("fname","lname","abc123") #new user
         test_user.save_user()
         self.assertEqual(len(User.user_list),2)
+
+    def test_delete_user(self):
+            '''
+            test_delete_user to test if we can remove a user from our user_list
+            '''
+            self.new_user.save_user()
+            test_user = User("feven","mogos","a1b1c1") # new user
+            test_user.save_user()
+
+            self.new_user.delete_user()# Deleting a user object
+            self.assertEqual(len(User.user_list),1)
 
     
 
