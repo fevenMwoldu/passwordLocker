@@ -22,6 +22,11 @@ def save_credential(credential):
     Function to save credentials
     '''
     credential.save_credential
+def generated_pwd(pwd):
+    '''
+    Function to call the generated password
+    '''
+    pwd.generated_pwd()
 
 def del_user(user):
     '''
@@ -59,7 +64,13 @@ def main():
                        print("account name")
                        accountName=input()
                        print("you credential password:")
+                       print("Do you want a generated password? if Yes: print Y")
                        Cpassword=input()
+                       if Cpassword='Y':
+                           print("here is the generated password:")
+                           generated_pwd() #calling the function that will generate us a randomly generated password
+                        else:
+                            Cpassword=input()
                        save_credential(create_account(userName,siteName,accountName,Cpassword)) #create and save new credentials
                        print('\n')
                        print(f"New credentials {userName}{siteName}{accountName}{Cpassword} are created")
