@@ -16,3 +16,13 @@ class User:
         save_user method saves user objects into user_list
         '''
         User.user_list.append(self)
+
+class Credential:
+    credentials_list=[] # Empty credential list
+    
+    def __init__(self,user_name,user_site,user_account,password):
+
+        self.user_name=user_name
+        self.user_site=user_site
+        self.user_account=user_account
+        self.password=password
