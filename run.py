@@ -66,10 +66,10 @@ def main():
                        print("you credential password:")
                        print("Do you want a generated password? if Yes: print Y")
                        Cpassword=input()
-                       if Cpassword='Y':
+                       if Cpassword =='Y':
                            print("here is the generated password:")
                            generated_pwd() #calling the function that will generate us a randomly generated password
-                        else:
+                       else:
                             Cpassword=input()
                        save_credential(create_account(userName,siteName,accountName,Cpassword)) #create and save new credentials
                        print('\n')
