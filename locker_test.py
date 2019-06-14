@@ -41,6 +41,8 @@ class TestUser(unittest.TestCase):
         test_user.save_user()
         self.assertEqual(len(User.user_list),2)
 
+    
+
 #codes here for the credentials part
 class TestCredential(unittest.TestCase):
     def setUp(self):
@@ -68,7 +70,7 @@ class TestCredential(unittest.TestCase):
 
     def test_save_credential(self):
         '''
-        test_save_credential test case to test if the user object is saved into
+        test_save_credential test case to test if the new credendial information is saved into
          the credenttial list
         '''
         self.new_credential.save_credential()
@@ -76,8 +78,8 @@ class TestCredential(unittest.TestCase):
 
     def test_save_multiple_credentials(self):
         '''
-        test_save_multiple_credentials to check if we can save multiple credential
-        objects to our credential_list
+        test_save_multiple_credentials to check if we can save multiple credential infos
+        to our credential_list
         '''
         self.new_credential.save_credential()
         test_credential=Credential("feven","facebook","feven","123abc") #new credential

@@ -22,6 +22,7 @@ class User:
         '''
         User.user_list.append(self)
 
+   
 class Credential:
     '''
     class that generates new instances of Credentials
