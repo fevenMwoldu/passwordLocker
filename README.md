@@ -1,12 +1,19 @@
 # PasswordLocker
 
-A website that recieves Quotes with their author and by whom it is submitted.The submitted quotes will be added into a row and can also be deleted from the row if they are unneeded.The added quotes can be liked and be given an upvote or they can be disliked and can be given a down vote.The number of upvote and down vote will then be counted.
+An application that will accept new users and existing users and let them save their credentials.It will allow the users to save their user names, site name and password.It can even generate passwords for the users so that they can be used in different accouonts.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
+This project was generated with [Python CLI]version 3.7
+
+##BDD(Behaviour Driven development)
+Given : A users has many accounts with their corresponding passwords
+
+When : A user wants to get the password of a specific site , the application should be able to display it .Moreover it should be able to allow the user to create new account with new password(password can be generated or manually given)
+
+Then : The user should be able to sign in with new account name and password or log in with an existing account name and password.So the user will be able to see his credentials.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `python file_name` at the terminal. The app will automatically interact with you to save your accounts credentials.
 
 ## Code scaffolding
 
@@ -16,18 +23,15 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-# {Web App: A simple Github search app}
+# {Python App: A simple password locker app}
 
-#### {Brief description of application}, {Fri 7, June 2019}
+#### {Brief description of application}, {Fri 14, June 2019}
 
 #### By **{Feven Moghes Weldu}**
 
 ## Description
 
-This project is a web app that uses GitHub API to provide a basic GitHub search facility. You can search by user or reporsitory names.
-
-## Live Web App
-
+This project is an app that uses Python to provide a basic password locker facility. You can sign in and log in to manage your accounts credntials.
 Here is a working live demo:
 
 {GhPages Link}
@@ -58,13 +62,11 @@ No bugs identified yet. If you find a bug please give us your feedback using the
 
 ## Technologies Used
 
-1) Angular 7 and Angular CLI
-2) Bootstrap
-3) Typescript, HTML and CSS 
-4) GitHub API
-5) Node 8
-6) Visual Studio Code
-7) Ubuntu
+1) Python3.7
+2) Visual Studio Code
+3) GitHub API
+4) Ubuntu
+
 
 ## Support and contact details
 
