@@ -1,4 +1,4 @@
-# QuoteProject
+# PasswordLocker
 
 A website that recieves Quotes with their author and by whom it is submitted.The submitted quotes will be added into a row and can also be deleted from the row if they are unneeded.The added quotes can be liked and be given an upvote or they can be disliked and can be given a down vote.The number of upvote and down vote will then be counted.
 
