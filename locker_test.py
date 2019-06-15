@@ -58,6 +58,19 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual(User.display_users(),User.user_list)
 
+    def test_user_exists(self):
+        '''
+        test to check if we can return a Boolean  if we cannot find the user.
+        '''
+
+        self.new_user.save_user()
+        test_user = User("feven","a1b1c1") # new user
+        test_user.save_user()
+
+        user_exists = User.user_exist("feven")
+
+        self.assertTrue(user_exists)
+
     
 
 #codes here for the credentials part
