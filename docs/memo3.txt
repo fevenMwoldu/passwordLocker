@@ -1,0 +1,57 @@
+promptMenu(Menu menu): number
+    Menu>>>
+    1) Login in (existing user)
+    2) Sign up (new user)
+
+    > 3
+
+    Invalid option. Please select one of the available options.
+
+    > 2
+
+
+class Menu:
+    options = {}
+
+    Menu(options: Dictionary):
+        self.options = options
+
+    prompt(): number
+        Menu>>>
+
+        for each {key:value} in options:
+            key) value
+
+        return read()
+
+    read(): number
+        repeat 
+            > 2
+        until valid option is entered
+
+        return option
+    
+
+const SignInMenu = {
+        '1': 'Login in (existing user)', 
+        '2': 'Sign up (new user)'
+}
+
+
+const MainMenu = {
+        '1': 'Store existing account credential',
+        '2': 'Create new account credential',
+        '3': 'View account credential',
+        '4': 'Delete account credential',
+        '5': 'Logout'
+}
+
+menu = new Menu(SignInMenu);
+
+option = menu.prompt()
+
+menu = new Menu(MainMenu);
+
+option = menu.prompt()
+
+

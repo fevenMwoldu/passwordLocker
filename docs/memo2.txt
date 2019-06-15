@@ -1,0 +1,74 @@
+displayWelcomeMessage():
+    ========================================
+    ========= Password Locker App ==========
+    ========================================
+
+handle(Action action)
+
+SignUpAction:
+    Sign up
+
+    Username: simon
+    Password: mypass
+
+    New account created successfuly.
+
+LoginInAction:
+    Login in
+
+    Username: simon
+    Password: mypass
+
+    You have logged in as 'simon' successfuly.
+
+StoreCredentialAction:
+    Store existing account credential
+
+    Sitename: twitter
+    Username: simon
+    Password: mytwitterpass
+
+    Account credential stored successfuly.
+
+CreateCredentialAction:
+    Create new account credential
+
+    Sitename: Instagram
+    Username: simon
+
+    Menu>>>
+    1) Generate random password
+    2) Enter password manually
+
+    > 1
+
+    Generating random password for new account credential ...
+
+    Generated Password is: hskd58934Tfgak213
+
+    > 2
+
+    Enter Password: myinstapass
+
+    New account credential created successfuly.
+
+ViewCredentialAction:
+    View account credential
+
+    Sitename: Facebook
+
+    Your account credential for Facebook is:
+
+    Username: simon
+    Password: myfacepass
+
+DeleteCredentialAction:
+    Delete account credential
+
+    Sitename: Facebook
+
+    Account credential for Facebook is deleted successfuly.
+
+
+LogoutAction:
+    Goodbye, See you soon!

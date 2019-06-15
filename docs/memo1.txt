@@ -1,0 +1,202 @@
+========================================
+========= Password Locker App ==========
+========================================
+
+Menu>>>
+1) Login in (existing user)
+2) Sign up (new user)
+
+> 2
+
+Sign up
+
+Username: simon
+Password: mypass
+
+New account created successfuly.
+
+Menu>>>
+1) Login in (existing user)
+2) Sign up (new user)
+
+> 1
+
+Login in
+
+Username: simon
+Password: mypass
+
+You have logged in as 'simon' successfuly.
+
+Menu>>>
+1) Store existing account credential
+2) Create new account credential
+3) View account credential
+4) Delete account credential
+5) Logout
+
+> 1
+
+Store existing account credential
+
+Sitename: twitter
+Username: simon
+Password: mytwitterpass
+
+Account credential stored successfuly.
+
+Menu>>>
+1) Store existing account credential
+2) Create new account credential
+3) View account credential
+4) Delete account credential
+5) Logout
+
+> 2
+
+Create new account credential
+
+Sitename: Instagram
+Username: simon
+
+Menu>>>
+1) Generate random password
+2) Enter password manually
+
+> 1
+
+Generating random password for new account credential ...
+
+Generated Password is: hskd58934Tfgak213
+
+> 2
+
+Enter Password: myinstapass
+
+New account credential created successfuly.
+
+Menu>>>
+1) Store existing account credential
+2) Create new account credential
+3) View account credential
+4) Delete account credential
+5) Logout
+
+> 3
+
+View account credential
+
+Sitename: Facebook
+
+Your account credential for Facebook is:
+
+Username: simon
+Password: myfacepass
+
+Menu>>>
+1) Store existing account credential
+2) Create new account credential
+3) View account credential
+4) Delete account credential
+5) Logout
+
+> 4
+
+Delete account credential
+
+Sitename: Facebook
+
+Account credential for Facebook is deleted successfuly.
+
+Menu>>>
+1) Store existing account credential
+2) Create new account credential
+3) View account credential
+4) Delete account credential
+5) Logout
+
+> 5
+
+Goodbye, See you soon!
+
+
+==== VALIDATIONS
+
+Menu>>>
+1) Login in (existing user)
+2) Sign up (new user)
+
+> 2
+
+Sign up
+
+Username: simon
+
+The username 'simon' is already taken. Please choose a different name.
+
+Username: feven
+
+The username 'feven' is already taken. Please choose a different name.
+
+Username: halal
+Password: mygualeynfieti
+
+New account created successfuly.
+
+> 2
+
+Sign up
+
+Username: simon
+
+The username 'simon' is already taken. Please choose a different name.
+
+Username: (if invalid username like empty, blank, invalid characters in username, length of username, etc)
+
+Please enter a valid username.
+
+Username: halal
+Password: mygualeynfieti
+
+New account created successfuly.
+
+> 2
+
+Sign up
+
+Username: simon
+Password: (if invalid password like empty, blank, invalid characters in password, length of password etc)
+
+Please enter a valid password.
+
+Password: mygualeynfieti
+
+New account created successfuly.
+
+> 1
+
+Login in
+
+Username: simon
+Password: mypassssss
+
+The credential you entered doesn't match any account. Please try again.
+
+Login in
+
+Username: simon
+Password: mypass
+
+You have logged in as 'simon' successfuly.
+
+# if login fails 3 times then
+
+Too many invalid login attempts.
+
+Menu>>>
+1) Login in (existing user)
+2) Sign up (new user)
+
+> 
+
+
