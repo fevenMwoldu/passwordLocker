@@ -134,6 +134,19 @@ class TestCredential(unittest.TestCase):
 
         self.assertEqual(Credential.display_credentials(),Credential.credentials_list)
 
+    def test_credentialSite_exists(self):
+        '''
+        test to check if we can return a Boolean  if we cannot find the credntial site.
+        '''
+
+        self.new_credential.save_credential()
+        test_credential = Credential("feven","facebook","feven","123abc") # new credential
+        test_credential.save_credential()
+
+        credentialSite_exists = Credential.credentialSite_exist("facebook")
+
+        self.assertTrue(credentialSite_exists)
+
     
 
 if __name__ == '__main__':

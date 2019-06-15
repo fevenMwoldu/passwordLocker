@@ -89,6 +89,22 @@ class Credential:
         '''
         return cls.credentials_list
 
+    @classmethod
+    def credentialSite_exist(cls,number):
+        '''
+        Method that checks if a user credential site exists from the credential list.
+        Args:
+           siteName to search if it exists
+        Returns :
+            Boolean: True or false depending if the user exists
+        '''
+        for credential in cls.credentials_list:
+            if credential.user_site == credential.user_site:
+                    return True
+
+        return False
+
+
    
 
     @classmethod
