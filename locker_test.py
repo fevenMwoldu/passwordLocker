@@ -6,12 +6,12 @@ class TestUser(unittest.TestCase):
         '''
         Set up method to run before each test cases.
         '''
-        self.new_user = User("feven","mogos","fev@gmail.com") # create User object
+        self.new_user = User("feven","abc123") # create User object
 
     def tearDown(self):
         '''
             tearDown method that does clean up after each test case has run.
-            '''
+        '''
         User.user_list=[] 
 
     def test_init(self):
@@ -20,7 +20,7 @@ class TestUser(unittest.TestCase):
         '''
 
         self.assertEqual(self.new_user.first_name,"feven")
-        self.assertEqual(self.new_user.password,"fev@gmail.com")
+        self.assertEqual(self.new_user.password,"abc123")
 
     def test_save_user(self):
         '''
@@ -36,7 +36,7 @@ class TestUser(unittest.TestCase):
             objects to our contact_list
             '''
         self.new_user.save_user()
-        test_user=User("fname","lname","abc123") #new user
+        test_user=User("fname","abc123") #new user
         test_user.save_user()
         self.assertEqual(len(User.user_list),2)
 
@@ -45,7 +45,7 @@ class TestUser(unittest.TestCase):
             test_delete_user to test if we can remove a user from our user_list
             '''
             self.new_user.save_user()
-            test_user = User("feven","mogos","a1b1c1") # new user
+            test_user = User("feven","a1b1c1") # new user
             test_user.save_user()
 
             self.new_user.delete_user()# Deleting a user object
