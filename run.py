@@ -62,55 +62,65 @@ def main():
 
         elif short_code == 'ex':
             print("Bye .......")
-            break            
+            break
         else:
             print("continue working")
 
 
 def mainPrompt():
-    print("Use these short codes : ca - create an account, log - logging in, ex -exit the user list")
-    short_code = input().lower()
-    return short_code
+
+     '''
+     A method that will display the first print lines
+     '''
+     print("Use these short codes : ca - create an account, log - logging in, ex -exit the user list")
+     short_code = input().lower()
+     return short_code
 
 
 def createAccount():
-    print("for creating a user submit username and password")
-    print("Username:")
-    fname = input()
-    print("Password")
-    password = input()
-    # create and save new users with username and password.
-    save_user(create_user(fname, password))
-    print('\n')
-    print(f"New Contact {fname} {password} created")
-    print('\n')
+     '''
+     A method that will recieve a user name and password for the user class
+     '''
+     print("for creating a user submit username and password")
+     print("Username:")
+     fname = input()
+     print("Password")
+     password = input()
+     # create and save new users with username and password.
+     save_user(create_user(fname, password))
+     print('\n')
+     print(f"New Contact {fname} {password} created")
+     print('\n')
 
 
 def login():
-    print(
+     '''
+     A method that will log us in and recieve's our credentials
+     '''
+     print(
         "for creating an account submit username,site_name,account_name and password")
-    print("Username:")
-    userName = input()
-    print("site name")
-    siteName = input()
-    print("account name")
-    accountName = input()
-    print("you credential password:")
-    print("Do you want a generated password? if Yes: print Y")
-    Cpassword = input()
+     print("Username:")
+     userName = input()
+     print("site name")
+     siteName = input()
+     print("account name")
+     accountName = input()
+     print("you credential password:")
+     print("Do you want a generated password? if Yes: print Y")
+     Cpassword = input()
 
-    if Cpassword == 'Y':
+     if Cpassword == 'Y':
         # calling the function that will generate us a randomly generated password
         Cpassword = generated_pass()
         print(f"here is the generated password :{Cpassword}")
 
     # create and save new credentials
-    save_credential(create_account(
+     save_credential(create_account(
         userName, siteName, accountName, Cpassword))
-    print('\n')
-    print(
+     print('\n')
+     print(
         f"New credentials {userName} {siteName} {accountName} {Cpassword} are created")
-    print('\n')
+     print('\n')
 
 
 if __name__ == '__main__':

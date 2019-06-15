@@ -37,7 +37,7 @@ class User:
         return cls.user_list
 
     @classmethod
-    def user_exist(cls,number):
+    def user_exist(cls, number):
         '''
         Method that checks if a user exists from the user list.
         Args:
@@ -47,7 +47,7 @@ class User:
         '''
         for user in cls.user_list:
             if user.first_name == user.first_name:
-                    return True
+                return True
 
         return False
 
@@ -81,7 +81,6 @@ class Credential:
         '''
         Credential.credentials_list.remove(self)
 
-    
     @classmethod
     def display_credentials(cls):
         '''
@@ -90,7 +89,7 @@ class Credential:
         return cls.credentials_list
 
     @classmethod
-    def credentialSite_exist(cls,number):
+    def credentialSite_exist(cls, number):
         '''
         Method that checks if a user credential site exists from the credential list.
         Args:
@@ -100,12 +99,9 @@ class Credential:
         '''
         for credential in cls.credentials_list:
             if credential.user_site == credential.user_site:
-                    return True
+                return True
 
         return False
-
-
-   
 
     @classmethod
     def generated_pass(cls):
