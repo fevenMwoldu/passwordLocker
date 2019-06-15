@@ -29,6 +29,13 @@ class User:
 
         User.user_list.remove(self)
 
+    @classmethod
+    def display_users(cls):
+        '''
+        method that returns the user list
+        '''
+        return cls.user_list
+
 
 class Credential:
     '''
@@ -53,6 +60,22 @@ class Credential:
         '''
         Credential.credentials_list.append(self)
 
+    def delete_credential(self):
+        '''
+        delete_credential method deletes a saved user's credential information from the credential_list
+        '''
+        Credential.credentials_list.remove(self)
+
+    
+    @classmethod
+    def display_credentials(cls):
+        '''
+        method that returns the list of users credentials
+        '''
+        return cls.credentials_list
+
+   
+
     @classmethod
     def generated_pass(cls):
         '''
@@ -61,5 +84,5 @@ class Credential:
         s = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()?"
         passlen = 8
         p = "".join(random.sample(s, passlen))
-        
+
         return p
