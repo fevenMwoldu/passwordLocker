@@ -1,8 +1,8 @@
-# {PasswordLocker Python App: A simple password locker app}
+# PasswordLocker: A simple password locker app}
 
-#### {Brief description of application}, {Fri 14, June 2019}
+#### Fri 14, June 2019
 
-#### By **{Feven Moghes Weldu}**
+#### By ** Feven Moghes Weldu **
 
 # Descrption
 
