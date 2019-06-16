@@ -111,6 +111,21 @@ class Credential:
         return False
 
     @classmethod
+    def find_by_sitename(cls,user_site):
+        '''
+        Method that takes in a user site and returns a site that matches that that site.
+
+        Args:
+           siteName to search if it exists
+        Returns :
+            Boolean: True or false depending if the user exists
+        '''
+
+        for credential in cls.credentials_list:
+            if credential.user_site == user_site:
+                return credential
+
+    @classmethod
     def generated_pass(cls):
         '''
         Generateing a password with random
