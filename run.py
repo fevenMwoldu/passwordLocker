@@ -53,11 +53,7 @@ def display_user():
 def display_credentials():
     return Credential.display_credentials()
 
-def del_credential(credential):
-    '''
-    Function to delete a credential
-    '''
-    return credential.delete_credential()
+
 
 def find_credential(siteName):
     return Credential.find_by_sitename(siteName)
@@ -159,6 +155,9 @@ def handleSignUp():
 
 
 def handleMainMenu(choice):
+    '''
+    A function that will handle our main menu, so that the user can choose
+    '''
     result = "main"
 
     if choice == 1:
@@ -175,6 +174,9 @@ def handleMainMenu(choice):
     return result
 
 def handleStoreExistingCredential():
+    '''
+    A function for storing the existing credentials of a user
+    '''
     result='main'
     
     account_name=input("Account name: ")
@@ -187,6 +189,9 @@ def handleStoreExistingCredential():
     return result
 
 def handleCreateNewCredential():
+    '''
+    A function that will create new credentials for logged user
+    '''
     result='main'
     account_name=input("Account name: ")
     site_name=input("Site name: ")
@@ -202,6 +207,9 @@ def handleCreateNewCredential():
     return result
 
 def handleViewCredential():
+    '''
+    A function that will let us see out credentials
+    '''
     result='main'
     show_password=input("Show passwords? [Y/N] ")
     
@@ -214,16 +222,24 @@ def handleViewCredential():
     return result
 
 def handleDeleteCredential():
+    '''
+    A function that deletes a credential by selecting the site name
+    '''
     result='main'
-    credential_todelete=input("choose which credential to be deleted: ")
+    credential_todelete=input("choose which site to be deleted: ")
     search_credential=find_credential(credential_todelete)
-    search_credential.del_credential()
+    Credential.delete_credential(search_credential)
+    
     return result
 
 def handleLogout():
-    result='main'
+    '''
+    A function that logs out from the users credential
+    '''
+    result='login'
     print("Bye")
     return result
+    
 
 current_user = None
 

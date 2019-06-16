@@ -200,3 +200,22 @@ Menu>>>
 > 
 
 
+3 View ...
+
+> 3
+Unhide passwords? [y/N] 
+
+
+> n
+
+Site Name   Account Name        Password
+Facebook    simon               ****
+Gmail       simon               ****
+Instragram  simon               ****
+
+> y
+
+Site Name   Account Name        Password
+Facebook    simon               123
+Gmail       simon               mdk354
+Instragram  simon               sh34o
