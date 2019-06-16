@@ -53,6 +53,15 @@ def display_user():
 def display_credentials():
     return Credential.display_credentials()
 
+def del_credential(credential):
+    '''
+    Function to delete a credential
+    '''
+    return credential.delete_credential()
+
+def find_credential(siteName):
+    return Credential.find_by_sitename(siteName)
+
 
 
 def welcomeMessage():
@@ -206,10 +215,14 @@ def handleViewCredential():
 
 def handleDeleteCredential():
     result='main'
+    credential_todelete=input("choose which credential to be deleted: ")
+    search_credential=find_credential(credential_todelete)
+    search_credential.del_credential()
     return result
 
 def handleLogout():
     result='main'
+    print("Bye")
     return result
 
 current_user = None
