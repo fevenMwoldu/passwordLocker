@@ -73,14 +73,21 @@ def find_credential(username, siteName):
 
 
 def welcomeMessage():
-    print(bcolors.HEADER + "==========================================================" + bcolors.ENDC)
-    print(bcolors.HEADER + "==================Password Locker App=====================" + bcolors.ENDC)
-    print(bcolors.HEADER + "==========================================================" + bcolors.ENDC)
+    '''
+    A function to display welcome banner
+    '''
+    print(bcolors.HEADER + " ____                                     _   _               _             " + bcolors.ENDC)
+    print(bcolors.HEADER + "|  _ \ __ _ ___ _____      _____  _ __ __| | | |    ___   ___| | _____ _ __ " + bcolors.ENDC)
+    print(bcolors.HEADER + "| |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` | | |   / _ \ / __| |/ / _ \ '__|" + bcolors.ENDC)
+    print(bcolors.HEADER + "|  __/ (_| \__ \__ \\ V  V / (_) | | | (_| |_| |__| (_) | (__|   <  __/ |   " + bcolors.ENDC)
+    print(bcolors.HEADER + "|_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_(_)_____\___/ \___|_|\_\___|_|   " + bcolors.ENDC)
     print('\n')
 
 
 def main():
-
+    '''
+    The main function that drives user interactivity with the app
+    '''
     welcomeMessage()
 
     current_menu = "login"
@@ -95,6 +102,9 @@ def main():
 
 
 def handleAction(menu, choice):
+    '''
+    a function to handle menu actions
+    '''
     result = menu
 
     if menu == "login":
@@ -106,6 +116,9 @@ def handleAction(menu, choice):
 
 
 def handleLoginMenu(choice):
+    '''
+    A function to handle login menu
+    '''
     result = "login"
 
     if choice == 1:
@@ -175,6 +188,9 @@ def handleSignUp():
     return result
 
 def handleExit():
+    '''
+    A function to handle exit action
+    '''
     println("Bye")
     return 'ex'
 
@@ -323,6 +339,9 @@ menus = {
 
 
 def showMenu(menu_name):
+    '''
+    A function tha displays menu and prompts user to select an option
+    '''
     if(menu_name not in menus):
         raise ValueError(
             'Unknown menu name. Please provide one of the available menu names.')
@@ -349,6 +368,9 @@ def showMenu(menu_name):
             print_error('You entered invalid menu item. Please try again.\n')
 
 def loadTestData():
+    '''
+    A function to load test data for development
+    '''
     save_user(User('fev', '123'))
     save_credential(Credential('fev', 'Facebook', 'fev', 'feb4fev'))
     save_credential(Credential('fev', 'Facebook', 'fev2', 'feb4fev2'))
@@ -361,13 +383,16 @@ def loadTestData():
 
 def testMenu():
     '''
-    Testing how our menu functions
+    A function to test how the menu functions
     '''
     current_menu = sys.argv[1]
     choice = showMenu(current_menu)
     println('Your choice is: {0}'.format(current_menu[choice-1]))
 
 class bcolors:
+    '''
+    Color escape sequences to print colored text in console.
+    '''
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKGREEN = '\033[92m'
@@ -378,5 +403,8 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 if __name__ == '__main__':
+    '''
+    This is the app entry point
+    '''
     #loadTestData()
     main()
