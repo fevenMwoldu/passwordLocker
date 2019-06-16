@@ -1,4 +1,4 @@
-# PasswordLocker: A simple password locker app}
+# PasswordLocker: A simple password locker app
 
 #### Fri 14, June 2019
 
