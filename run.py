@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.7
+import sys
 from locker import User, Credential
-
+import clipboard
 
 def create_user(fname, password):
     '''
@@ -46,81 +47,222 @@ def del_user(user):
     user.del_user()
 
 
-def main():
-    print("Hello Welcome to the user list. What is your name?")
-    user_name = input()
+def display_user():
+    return User.display_users()
 
-    print(f"Hello {user_name}. what would you like to do?")
+def display_credentials():
+    return Credential.display_credentials()
+
+
+
+def welcomeMessage():
+    print("==========================================================")
+    print("==================Password Locker App=====================")
+    print("==========================================================")
     print('\n')
 
-    while True:
-        short_code = mainPrompt()
-        if short_code == 'ca':
-            createAccount()
-        elif short_code == 'log':
-            login()
 
-        elif short_code == 'ex':
-            print("Bye .......")
+def main():
+
+    welcomeMessage()
+
+    current_menu = "login"
+
+    while True:
+        choice = showMenu(current_menu)
+
+        current_menu = handleAction(current_menu, choice)
+
+        if(current_menu == 'ex'):
+            break
+
+
+def handleAction(menu, choice):
+    result = menu
+
+    if menu == "login":
+        result = handleLoginMenu(choice)
+    elif menu == "main":
+        result = handleMainMenu(choice)
+
+    return result
+
+
+def handleLoginMenu(choice):
+    result = "login"
+
+    if choice == 1:
+        result = handleLogin()
+    elif choice == 2:
+        result = handleSignUp()
+
+    return result
+
+
+def handleLogin():
+    result = "login"
+
+    while True:
+        print('Login')
+
+        username = input('Username: ')
+        password = input('Password: ')
+
+        if User.authenticate(username, password) == True:
+            current_user=username
+            result = "main"
             break
         else:
-            print("continue working")
+            print('Invalid username/password. Please try again.')
+    
+
+    return result
 
 
-def mainPrompt():
+def handleSignUp():
+    result = "login"
 
-     '''
-     A method that will display the first print lines
-     '''
-     print("Use these short codes : ca - create an account, log - logging in, ex -exit the user list")
-     short_code = input().lower()
-     return short_code
+    print('Sign Up')
+
+    while True:
+        username = input('Username: ')
+
+        if len(username) == 0:
+            print("Empty username is not allowed. Please enter valid username.")
+        if User.user_exist(username) == True:
+            print("The username {0} is already taken. Please enter another name.".format(username))
+        else:
+            break
+
+    while True:
+        password = input('Password: ')  
+
+        if len(password) == 0:
+            print("Empty password is not allowed. Please enter valid password.")
+        else:
+            break
+
+    user = User(username, password)   
+
+    save_user(user)
+
+    return result
 
 
-def createAccount():
-     '''
-     A method that will recieve a user name and password for the user class
-     '''
-     print("for creating a user submit username and password")
-     print("Username:")
-     fname = input()
-     print("Password")
-     password = input()
-     # create and save new users with username and password.
-     save_user(create_user(fname, password))
-     print('\n')
-     print(f"New Contact {fname} {password} created")
-     print('\n')
+def handleMainMenu(choice):
+    result = "main"
+
+    if choice == 1:
+        result = handleStoreExistingCredential()
+    elif choice == 2:
+        result = handleCreateNewCredential() 
+    elif choice == 3:
+        result = handleViewCredential()
+    elif choice == 4:
+        result = handleDeleteCredential()
+    elif choice == 5:
+        result = handleLogout()
+
+    return result
+
+def handleStoreExistingCredential():
+    result='main'
+    
+    account_name=input("Account name: ")
+    site_name=input("Site name: ")
+    password=input("Password: ")
+
+    credential=Credential(current_user,site_name,account_name,password)
+    save_credential(credential)
+
+    return result
+
+def handleCreateNewCredential():
+    result='main'
+    account_name=input("Account name: ")
+    site_name=input("Site name: ")
+    password=input("Enter password manually or Enter Y for generated password: ")
+
+    if password == 'Y':
+        password=Credential.generated_pass()
+        clipboard.copy(password)
+        print('The generated password is copied to clipboard.')
+
+    credential=Credential(current_user,site_name,account_name,password)
+    save_credential(credential)
+    return result
+
+def handleViewCredential():
+    result='main'
+    show_password=input("Show passwords? [Y/N] ")
+    
+    for credential in display_credentials():
+        if show_password in ["Y", "y"]:
+            print('{0}\t\t{1}\t\t{2}'.format(credential.user_site,credential.user_account,credential.password))
+        else:
+            print('{0}\t\t{1}\t\t{2}'.format(credential.user_site,credential.user_account,"*****"))
+
+    return result
+
+def handleDeleteCredential():
+    result='main'
+    return result
+
+def handleLogout():
+    result='main'
+    return result
+
+current_user = None
+
+menus = {
+    "main": [
+        'Store existing account credential',
+        'Create new account credential',
+        'View account credential',
+        'Delete account credential',
+        'Logout'
+    ],
+    "login": [
+        "Log in(existing user)",
+        "Sign up(new user)"
+    ],
+    "other": [
+
+    ]
+}
 
 
-def login():
-     '''
-     A method that will log us in and recieve's our credentials
-     '''
-     print(
-        "for creating an account submit username,site_name,account_name and password")
-     print("Username:")
-     userName = input()
-     print("site name")
-     siteName = input()
-     print("account name")
-     accountName = input()
-     print("you credential password:")
-     print("Do you want a generated password? if Yes: print Y")
-     Cpassword = input()
+def showMenu(menu_name):
+    if(menu_name not in menus):
+        raise ValueError(
+            'Unknown menu name. Please provide one of the available menu names.')
 
-     if Cpassword == 'Y':
-        # calling the function that will generate us a randomly generated password
-        Cpassword = generated_pass()
-        print(f"here is the generated password :{Cpassword}")
+    menu = menus[menu_name]
 
-    # create and save new credentials
-     save_credential(create_account(
-        userName, siteName, accountName, Cpassword))
-     print('\n')
-     print(
-        f"New credentials {userName} {siteName} {accountName} {Cpassword} are created")
-     print('\n')
+    ln = len(menu)
+
+    if(ln < 1):
+        raise ValueError('Menu list should have at least one item.')
+
+    print("what would you like to do, choose one number : \n")
+    for i in range(ln):
+        print("{0}) {1}".format(i+1, menu[i]))
+
+    while True:
+        try:
+            choice = int(input('\n> '))
+            if(choice > 0 and choice <= ln):
+                return choice
+            else:
+                print('\nYou entered invalid menu item. Please try again.\n')
+        except ValueError:
+            print('\nYou entered invalid menu item. Please try again.\n')
+
+
+def testMenu():
+    current_menu = sys.argv[1]
+    choice = showMenu(current_menu)
+    print('Your choice is: {0}'.format(current_menu[choice-1]))
 
 
 if __name__ == '__main__':
