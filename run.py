@@ -2,6 +2,18 @@
 import sys
 from locker import User, Credential
 import clipboard
+from prettytable import PrettyTable
+
+def println(s):
+    print('')
+    print(bcolors.OKGREEN + 'Info: ' + s + bcolors.ENDC)
+
+def print_error(msg):
+    print('')
+    print(bcolors.FAIL + 'Error: ' + msg + bcolors.ENDC)    
+
+def read(s):
+    return input(bcolors.OKBLUE + s + ': ' + bcolors.ENDC)
 
 def create_user(fname, password):
     '''
@@ -50,20 +62,20 @@ def del_user(user):
 def display_user():
     return User.display_users()
 
-def display_credentials():
-    return Credential.display_credentials()
+def display_credentials(username):
+    return Credential.display_credentials(username)
 
 
 
-def find_credential(siteName):
-    return Credential.find_by_sitename(siteName)
+def find_credential(username, siteName):
+    return Credential.find_by_sitename(username, siteName)
 
 
 
 def welcomeMessage():
-    print("==========================================================")
-    print("==================Password Locker App=====================")
-    print("==========================================================")
+    print(bcolors.HEADER + "==========================================================" + bcolors.ENDC)
+    print(bcolors.HEADER + "==================Password Locker App=====================" + bcolors.ENDC)
+    print(bcolors.HEADER + "==========================================================" + bcolors.ENDC)
     print('\n')
 
 
@@ -100,50 +112,59 @@ def handleLoginMenu(choice):
         result = handleLogin()
     elif choice == 2:
         result = handleSignUp()
+    elif choice == 3:
+        result = handleExit()
 
     return result
 
 
 def handleLogin():
+    '''
+    A function that handles our login for our existing user
+    '''
+    global current_user
     result = "login"
 
     while True:
-        print('Login')
+        println('Login')
 
-        username = input('Username: ')
-        password = input('Password: ')
+        username = read('Username')
+        password = read('Password')
 
         if User.authenticate(username, password) == True:
             current_user=username
             result = "main"
             break
         else:
-            print('Invalid username/password. Please try again.')
+            print_error('Invalid username/password. Please try again.')
     
 
     return result
 
 
 def handleSignUp():
+    '''
+    A function that will handle our signup for a new user
+    '''
     result = "login"
 
-    print('Sign Up')
+    println('Sign Up')
 
     while True:
-        username = input('Username: ')
+        username = read('Username')
 
         if len(username) == 0:
-            print("Empty username is not allowed. Please enter valid username.")
+            print_error("Empty username is not allowed. Please enter valid username.")
         if User.user_exist(username) == True:
-            print("The username {0} is already taken. Please enter another name.".format(username))
+            print_error("The username {0} is already taken. Please enter another name.".format(username))
         else:
             break
 
     while True:
-        password = input('Password: ')  
+        password = read('Password')  
 
         if len(password) == 0:
-            print("Empty password is not allowed. Please enter valid password.")
+            print_error("Empty password is not allowed. Please enter valid password.")
         else:
             break
 
@@ -152,6 +173,11 @@ def handleSignUp():
     save_user(user)
 
     return result
+
+def handleExit():
+    println("Bye")
+    return 'ex'
+
 
 
 def handleMainMenu(choice):
@@ -167,9 +193,27 @@ def handleMainMenu(choice):
     elif choice == 3:
         result = handleViewCredential()
     elif choice == 4:
-        result = handleDeleteCredential()
+        result = handleSiteLogin()
     elif choice == 5:
+        result = handleDeleteCredential()
+    elif choice == 6:
         result = handleLogout()
+
+    return result
+
+def handleSiteLogin():
+    global current_user
+    result = "main"
+
+    site_name = read('Site name')
+
+    credentials = find_credential(current_user, site_name)
+
+    if len(credentials) > 0:
+        clipboard.copy(credentials[0].password)
+        println('The password for site: {0}, account: {1} is copied to clip board.'.format(site_name, credentials[0].user_account))
+    else:
+        println('No credential was found for site: {0}.'.format(site_name))
 
     return result
 
@@ -177,11 +221,12 @@ def handleStoreExistingCredential():
     '''
     A function for storing the existing credentials of a user
     '''
+    global current_user
     result='main'
     
-    account_name=input("Account name: ")
-    site_name=input("Site name: ")
-    password=input("Password: ")
+    account_name=read('Account name')
+    site_name=read('Site name')
+    password=read('Password')
 
     credential=Credential(current_user,site_name,account_name,password)
     save_credential(credential)
@@ -192,10 +237,11 @@ def handleCreateNewCredential():
     '''
     A function that will create new credentials for logged user
     '''
+    global current_user
     result='main'
-    account_name=input("Account name: ")
-    site_name=input("Site name: ")
-    password=input("Enter password manually or Enter Y for generated password: ")
+    account_name=read('Account name')
+    site_name=read('Site name')
+    password=read('Enter password manually or Enter Y for generated password')
 
     if password == 'Y':
         password=Credential.generated_pass()
@@ -210,14 +256,23 @@ def handleViewCredential():
     '''
     A function that will let us see out credentials
     '''
+    global current_user
     result='main'
-    show_password=input("Show passwords? [Y/N] ")
+    show_password=read("Show passwords? [Y/N]")
+
+    println('Your credentials are:')
+
+    credentials = display_credentials(current_user)   
+
+    t = PrettyTable(['Site', 'Account', 'Password'])
     
-    for credential in display_credentials():
+    for credential in credentials:
         if show_password in ["Y", "y"]:
-            print('{0}\t\t{1}\t\t{2}'.format(credential.user_site,credential.user_account,credential.password))
+            t.add_row([credential.user_site,credential.user_account,credential.password])
         else:
-            print('{0}\t\t{1}\t\t{2}'.format(credential.user_site,credential.user_account,"*****"))
+            t.add_row([credential.user_site,credential.user_account,"****"])
+
+    print(t)
 
     return result
 
@@ -226,9 +281,14 @@ def handleDeleteCredential():
     A function that deletes a credential by selecting the site name
     '''
     result='main'
-    credential_todelete=input("choose which site to be deleted: ")
-    search_credential=find_credential(credential_todelete)
-    Credential.delete_credential(search_credential)
+    site_name = read('choose which site to be deleted')
+    
+    credentials = find_credential(current_user, site_name)
+
+    for cred in credentials:
+        Credential.delete_credential(cred)
+
+    println('Deleted {0} matching credentials.'.format(len(credentials)))
     
     return result
 
@@ -236,8 +296,10 @@ def handleLogout():
     '''
     A function that logs out from the users credential
     '''
+    global current_user
     result='login'
-    print("Bye")
+    current_user = None
+    
     return result
     
 
@@ -245,18 +307,17 @@ current_user = None
 
 menus = {
     "main": [
-        'Store existing account credential',
+        'Store existing account credential', #A menu dictionary with value and key given
         'Create new account credential',
-        'View account credential',
+        'View account credentials',
+        'I want to login to a site',        
         'Delete account credential',
         'Logout'
     ],
     "login": [
         "Log in(existing user)",
-        "Sign up(new user)"
-    ],
-    "other": [
-
+        "Sign up(new user)",
+        "Exit"
     ]
 }
 
@@ -273,26 +334,49 @@ def showMenu(menu_name):
     if(ln < 1):
         raise ValueError('Menu list should have at least one item.')
 
-    print("what would you like to do, choose one number : \n")
+    println("what would you like to do, choose one number : \n")
     for i in range(ln):
-        print("{0}) {1}".format(i+1, menu[i]))
+        print("{0}{1}{2}) {3}{4}{5}".format(bcolors.UNDERLINE, i+1, bcolors.ENDC, bcolors.BOLD, menu[i], bcolors.ENDC))
 
     while True:
         try:
-            choice = int(input('\n> '))
+            choice = int(input(bcolors.OKGREEN + '\n> ' + bcolors.ENDC))
             if(choice > 0 and choice <= ln):
                 return choice
             else:
-                print('\nYou entered invalid menu item. Please try again.\n')
+                print_error('You entered invalid menu item. Please try again.\n')
         except ValueError:
-            print('\nYou entered invalid menu item. Please try again.\n')
+            print_error('You entered invalid menu item. Please try again.\n')
 
+def loadTestData():
+    save_user(User('fev', '123'))
+    save_credential(Credential('fev', 'Facebook', 'fev', 'feb4fev'))
+    save_credential(Credential('fev', 'Facebook', 'fev2', 'feb4fev2'))
+    save_credential(Credential('fev', 'Gmail', 'fev', 'gm4fev'))
+
+    save_user(User('sim', '456'))
+    save_credential(Credential('sim', 'Facebook', 'sim', 'feb4sim'))
+    save_credential(Credential('sim', 'Gmail', 'sim', 'gm4sim'))    
+    save_credential(Credential('sim', 'Instagram', 'sim', 'insta4sim'))
 
 def testMenu():
+    '''
+    Testing how our menu functions
+    '''
     current_menu = sys.argv[1]
     choice = showMenu(current_menu)
-    print('Your choice is: {0}'.format(current_menu[choice-1]))
+    println('Your choice is: {0}'.format(current_menu[choice-1]))
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 if __name__ == '__main__':
+    #loadTestData()
     main()

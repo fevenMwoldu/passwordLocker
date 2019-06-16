@@ -61,7 +61,7 @@ class User:
 
 class Credential:
     '''
-    class that generates new instances of Credentials
+    class that generates new instances of Credential
     '''
 
     credentials_list = []  # Empty credential list
@@ -89,11 +89,11 @@ class Credential:
         Credential.credentials_list.remove(self)
 
     @classmethod
-    def display_credentials(cls):
+    def display_credentials(cls, username):
         '''
         method that returns the list of users credentials
         '''
-        return cls.credentials_list
+        return [cr for cr in cls.credentials_list if cr.user_name == username]
 
     @classmethod
     def credentialSite_exist(cls, number):
@@ -111,7 +111,7 @@ class Credential:
         return False
 
     @classmethod
-    def find_by_sitename(cls,user_site):
+    def find_by_sitename(cls, user_name, user_site):
         '''
         Method that takes in a user site and returns a site that matches that that site.
 
@@ -121,9 +121,7 @@ class Credential:
             Boolean: True or false depending if the user exists
         '''
 
-        for credential in cls.credentials_list:
-            if credential.user_site == user_site:
-                return credential
+        return [c for c in cls.credentials_list if c.user_name == user_name and c.user_site == user_site]
 
     @classmethod
     def generated_pass(cls):
