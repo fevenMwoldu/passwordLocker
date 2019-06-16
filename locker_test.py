@@ -152,6 +152,19 @@ class TestCredential(unittest.TestCase):
 
         self.assertTrue(credentialSite_exists)
 
+    def test_find_credential_by_sitename(self):
+        '''
+        test to check if we can find a users credential by sitename and display information
+        '''
+
+        self.new_credential.save_credential()
+        test_credential = Credential("feven", "facebook", "feven", "123abc") # new credential
+        test_credential.save_credential()
+
+        found_credential = Credential.find_by_sitename("facebook")
+
+        self.assertEqual(found_credential.user_name,test_credential.user_name)
+
 
 if __name__ == '__main__':
     unittest.main()
