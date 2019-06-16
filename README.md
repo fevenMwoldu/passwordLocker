@@ -1,6 +1,6 @@
 # PasswordLocker
 
-An application that will accept new users and existing users and let them save their credentials.It will allow the users to save their user names, site name and password.It can even generate passwords for the users so that they can be used in different accouonts.
+An application that will accept new users and existing users and let them save their credentials.It will allow the users to save their user names, site name and password.It can even generate passwords for the users so that it can be used in different accunts.
 
 This project was generated with [Python CLI]version 3.7
 
