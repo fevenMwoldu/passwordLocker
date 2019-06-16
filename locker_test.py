@@ -135,7 +135,7 @@ class TestCredential(unittest.TestCase):
         method that returns a list of all user credentials saved
         '''
 
-        self.assertEqual(Credential.display_credentials(),
+        self.assertEqual(Credential.display_credentials("feven"),
                          Credential.credentials_list)
 
     def test_credentialSite_exists(self):
@@ -158,12 +158,13 @@ class TestCredential(unittest.TestCase):
         '''
 
         self.new_credential.save_credential()
-        test_credential = Credential("feven", "facebook", "feven", "123abc") # new credential
+        test_credential = Credential("feven", "Gmail", "feven", "123abc") # new credential
         test_credential.save_credential()
 
-        found_credential = Credential.find_by_sitename("facebook")
+        found_credential = Credential.find_by_sitename("feven", "facebook")
 
-        self.assertEqual(found_credential.user_name,test_credential.user_name)
+        self.assertEqual(len(found_credential), 1)
+        self.assertEqual(found_credential[0].user_name,test_credential.user_name)
 
 
 if __name__ == '__main__':

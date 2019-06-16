@@ -1,4 +1,10 @@
-# PasswordLocker
+# {PasswordLocker Python App: A simple password locker app}
+
+#### {Brief description of application}, {Fri 14, June 2019}
+
+#### By **{Feven Moghes Weldu}**
+
+# Descrption
 
 An application that will accept new users and existing users and let them save their credentials.It will allow the users to save their user names, site name and password.It can even generate passwords for the users so that it can be used in different accunts.
 
@@ -11,31 +17,6 @@ When : A user wants to get the password of a specific site , the application sho
 
 Then : The user should be able to sign in with new account name and password or log in with an existing account name and password.So the user will be able to see his credentials.
 
-## Development server
-
-Run `python file_name` at the terminal. The app will automatically interact with you to save your accounts credentials.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-# {Python App: A simple password locker app}
-
-#### {Brief description of application}, {Fri 14, June 2019}
-
-#### By **{Feven Moghes Weldu}**
-
-## Description
-
-This project is an app that uses Python to provide a basic password locker facility. You can sign in and log in to manage your accounts credntials.
-Here is a working live demo:
-
-{GhPages Link}
-
 ## Setup/Installation Requirements
 
 1) clone the repository from GitHub
@@ -46,15 +27,11 @@ $ git clone {GitHub repository URL}
 
 $ cd {repo-name}
 
-3) open project in VS Code
+3) Run `./run.py` at the terminal.
 
-$ code .
+$ ./run.py
 
-4) run the app
-
-ng serve -o
-
-The app will open in a new browser.
+Then following onscreen instructions to operate the app.
 
 ## Known Bugs
 
@@ -64,9 +41,11 @@ No bugs identified yet. If you find a bug please give us your feedback using the
 
 1) Python3.7
 2) Visual Studio Code
-3) GitHub API
 4) Ubuntu
 
+## Live Link
+
+The app is a console application. So no live link. You have to download and run it in the console.
 
 ## Support and contact details
 
