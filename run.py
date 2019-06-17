@@ -81,7 +81,7 @@ def welcomeMessage():
     print(bcolors.HEADER + "| |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` | | |   / _ \ / __| |/ / _ \ '__|" + bcolors.ENDC)
     print(bcolors.HEADER + "|  __/ (_| \__ \__ \\ V  V / (_) | | | (_| |_| |__| (_) | (__|   <  __/ |   " + bcolors.ENDC)
     print(bcolors.HEADER + "|_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_(_)_____\___/ \___|_|\_\___|_|   " + bcolors.ENDC)
-    print('\n')
+    print('\n')                                              
 
 
 def main():
